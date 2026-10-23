@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two-Player Blackjack</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Table Twenty-One home">
+          <span class="brand-mark" aria-hidden="true">21</span>
+          <span>TABLE <strong>TWENTY-ONE</strong></span>
+        </a>
+        <p class="table-label"><span class="status-dot" aria-hidden="true"></span> LOCAL TABLE <span class="divider">/</span> 2 PLAYERS</p>
+      </header>
+
+      <section class="game" aria-labelledby="game-title">
+        <div class="game-heading">
+          <div>
+            <p class="eyebrow">A FRIENDLY GAME OF</p>
+            <h1 id="game-title">Blackjack <span>for two.</span></h1>
+          </div>
+          <button class="text-button" id="rules-button" type="button" aria-expanded="false" aria-controls="rules-panel">How to play <span aria-hidden="true">↗</span></button>
+        </div>
+
+        <aside class="rules-panel" id="rules-panel" hidden>
+          <strong>Get as close to 21 as you can.</strong>
+          <p>Take turns choosing Hit or Stand. Number cards count as shown, face cards count as 10, and aces count as 1 or 11. After both players stand or bust, the higher score at or below 21 wins. A tie is a push.</p>
+        </aside>
+
+        <div class="table" id="table" aria-label="Blackjack table">
+          <section class="hand-area dealer-area" aria-labelledby="dealer-title">
+            <div class="hand-heading">
+              <div class="seat-label"><span class="seat-icon dealer-icon" aria-hidden="true">D</span><div><h2 id="dealer-title">Dealer</h2><p class="hand-caption" id="dealer-caption">House hand</p></div></div>
+              <div class="score" aria-label="Dealer score"><span class="score-number" id="dealer-score">—</span><span class="score-label">POINTS</span></div>
+            </div>
+            <div class="cards" id="dealer-cards" aria-label="Dealer cards"></div>
+          </section>
+
+          <div class="table-center" aria-live="polite" aria-atomic="true">
+            <span class="center-rule" aria-hidden="true"></span>
+            <p class="round-label" id="round-label">READY WHEN YOU ARE</p>
+            <p class="round-message" id="round-message">A little luck. A little strategy.</p>
+            <span class="center-rule" aria-hidden="true"></span>
+          </div>
+
+          <section class="hand-area players-area" aria-label="Player hands">
+            <article class="player-hand" id="player-one-area" aria-labelledby="player-one-title">
+              <div class="hand-heading">
+                <div class="seat-label"><span class="seat-icon" aria-hidden="true">1</span><div><h2 id="player-one-title">Player One</h2><p class="hand-caption" id="player-one-caption">Your turn</p></div></div>
+                <div class="score"><span class="score-number" id="player-one-score">—</span><span class="score-label">POINTS</span></div>
+              </div>
+              <div class="cards" id="player-one-cards" aria-label="Player One cards"></div>
+            </article>
+
+            <article class="player-hand" id="player-two-area" aria-labelledby="player-two-title">
+              <div class="hand-heading">
+                <div class="seat-label"><span class="seat-icon" aria-hidden="true">2</span><div><h2 id="player-two-title">Player Two</h2><p class="hand-caption" id="player-two-caption">Waiting</p></div></div>
+                <div class="score"><span class="score-number" id="player-two-score">—</span><span class="score-label">POINTS</span></div>
+              </div>
+              <div class="cards" id="player-two-cards" aria-label="Player Two cards"></div>
+            </article>
+          </section>
+        </div>
+
+        <section class="controls" aria-label="Game controls">
+          <div class="turn-indicator"><span class="turn-dot" id="turn-dot" aria-hidden="true"></span><span id="turn-text">Start a round to play</span></div>
+          <div class="button-group">
+            <button class="button button-secondary" id="hit-button" type="button" disabled>Hit <span aria-hidden="true">＋</span></button>
+            <button class="button button-secondary" id="stand-button" type="button" disabled>Stand <span aria-hidden="true">↗</span></button>
+            <button class="button button-primary" id="start-button" type="button">Deal cards <span aria-hidden="true">→</span></button>
+          </div>
+        </section>
+
+        <footer class="game-footer"><span>NO BETS. JUST BRAGGING RIGHTS.</span><span id="round-count">ROUND 00</span></footer>
+      </section>
+      <p class="sr-only" id="announcer" aria-live="assertive"></p>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
