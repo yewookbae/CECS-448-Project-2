@@ -8,20 +8,9 @@
   </head>
   <body>
     <main class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#" aria-label="Table Twenty-One home">
-          <span class="brand-mark" aria-hidden="true">21</span>
-          <span>TABLE <strong>TWENTY-ONE</strong></span>
-        </a>
-        <p class="table-label"><span class="status-dot" aria-hidden="true"></span> LOCAL TABLE <span class="divider">/</span> 2 PLAYERS</p>
-      </header>
 
       <section class="game" aria-labelledby="game-title">
-        <div class="game-heading">
-          <div>
-            <p class="eyebrow">A FRIENDLY GAME OF</p>
-            <h1 id="game-title">Blackjack <span>for two.</span></h1>
-          </div>
+        <div class="game-header">
           <button class="text-button" id="rules-button" type="button" aria-expanded="false" aria-controls="rules-panel">How to play <span aria-hidden="true">↗</span></button>
         </div>
 
@@ -73,8 +62,6 @@
             <button class="button button-primary" id="start-button" type="button">Deal cards <span aria-hidden="true">→</span></button>
           </div>
         </section>
-
-        <footer class="game-footer"><span>NO BETS. JUST BRAGGING RIGHTS.</span><span id="round-count">ROUND 00</span></footer>
       </section>
       <p class="sr-only" id="announcer" aria-live="assertive"></p>
     </main>
