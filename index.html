@@ -16,14 +16,14 @@
 
         <aside class="rules-panel" id="rules-panel" hidden>
           <strong>Get as close to 21 as you can.</strong>
-          <p>Take turns choosing Hit or Stand. Number cards count as shown, face cards count as 10, and aces count as 1 or 11. After both players stand or bust, the higher score at or below 21 wins. A tie is a push.</p>
+          <p>Set a bet before the deal. Take turns choosing Hit or Stand. Number cards count as shown, face cards count as 10, and aces count as 1 or 11. The higher score at or below 21 wins; a tie returns the bet. Wins pay 1:1. Splitting and doubling are not part of this game.</p>
         </aside>
 
         <div class="table" id="table" aria-label="Blackjack table">
           <section class="hand-area dealer-area" aria-labelledby="dealer-title">
             <div class="hand-heading">
               <div class="seat-label"><span class="seat-icon dealer-icon" aria-hidden="true">D</span><div><h2 id="dealer-title">Dealer</h2><p class="hand-caption" id="dealer-caption">House hand</p></div></div>
-              <div class="score" aria-label="Dealer score"><span class="score-number" id="dealer-score">—</span><span class="score-label">POINTS</span></div>
+              <div class="score" aria-label="Dealer score"><span class="score-number" id="dealer-score">—</span><span class="score-label">HAND TOTAL</span></div>
             </div>
             <div class="cards" id="dealer-cards" aria-label="Dealer cards"></div>
           </section>
@@ -39,7 +39,7 @@
             <article class="player-hand" id="player-one-area" aria-labelledby="player-one-title">
               <div class="hand-heading">
                 <div class="seat-label"><span class="seat-icon" aria-hidden="true">1</span><div><h2 id="player-one-title">Player One</h2><p class="hand-caption" id="player-one-caption">Your turn</p></div></div>
-                <div class="score"><span class="score-number" id="player-one-score">—</span><span class="score-label">POINTS</span></div>
+                <div class="score"><span class="score-number" id="player-one-score">—</span><span class="score-label">HAND TOTAL</span></div>
               </div>
               <div class="cards" id="player-one-cards" aria-label="Player One cards"></div>
             </article>
@@ -47,20 +47,47 @@
             <article class="player-hand" id="player-two-area" aria-labelledby="player-two-title">
               <div class="hand-heading">
                 <div class="seat-label"><span class="seat-icon" aria-hidden="true">2</span><div><h2 id="player-two-title">Player Two</h2><p class="hand-caption" id="player-two-caption">Waiting</p></div></div>
-                <div class="score"><span class="score-number" id="player-two-score">—</span><span class="score-label">POINTS</span></div>
+                <div class="score"><span class="score-number" id="player-two-score">—</span><span class="score-label">HAND TOTAL</span></div>
               </div>
               <div class="cards" id="player-two-cards" aria-label="Player Two cards"></div>
             </article>
+          </section>
+          <section class="table-betting" aria-label="Player bets">
+            <div class="bet-line">
+              <div class="bet-player"><strong>Player One</strong><span>Balance <b id="balance-one">$2,500</b></span></div>
+              <button class="current-bet" id="bet-trigger-one" type="button" aria-expanded="false" aria-controls="custom-one-form">Bet <strong id="wager-one">$0</strong><span aria-hidden="true">✎</span></button>
+              <div class="chip-row" aria-label="Player One chip values">
+                <button class="chip chip-white" type="button" data-player="one" data-value="1" aria-label="Add $1 to Player One's bet">$1</button>
+                <button class="chip chip-red" type="button" data-player="one" data-value="5" aria-label="Add $5 to Player One's bet">$5</button>
+                <button class="chip chip-green" type="button" data-player="one" data-value="25" aria-label="Add $25 to Player One's bet">$25</button>
+                <button class="chip chip-black" type="button" data-player="one" data-value="100" aria-label="Add $100 to Player One's bet">$100</button>
+                <button class="chip chip-purple" type="button" data-player="one" data-value="500" aria-label="Add $500 to Player One's bet">$500</button>
+              </div>
+              <form class="custom-bet" id="custom-one-form" data-player="one" hidden><label for="custom-one">Custom amount</label><div><span aria-hidden="true">$</span><input id="custom-one" name="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Whole dollars" /><button type="submit">Add</button><button class="clear-bet" type="button" data-player="one">Clear</button></div><p class="bet-error" id="bet-error-one" aria-live="polite"></p></form>
+            </div>
+            <div class="bet-line">
+              <div class="bet-player"><strong>Player Two</strong><span>Balance <b id="balance-two">$2,500</b></span></div>
+              <button class="current-bet" id="bet-trigger-two" type="button" aria-expanded="false" aria-controls="custom-two-form">Bet <strong id="wager-two">$0</strong><span aria-hidden="true">✎</span></button>
+              <div class="chip-row" aria-label="Player Two chip values">
+                <button class="chip chip-white" type="button" data-player="two" data-value="1" aria-label="Add $1 to Player Two's bet">$1</button>
+                <button class="chip chip-red" type="button" data-player="two" data-value="5" aria-label="Add $5 to Player Two's bet">$5</button>
+                <button class="chip chip-green" type="button" data-player="two" data-value="25" aria-label="Add $25 to Player Two's bet">$25</button>
+                <button class="chip chip-black" type="button" data-player="two" data-value="100" aria-label="Add $100 to Player Two's bet">$100</button>
+                <button class="chip chip-purple" type="button" data-player="two" data-value="500" aria-label="Add $500 to Player Two's bet">$500</button>
+              </div>
+              <form class="custom-bet" id="custom-two-form" data-player="two" hidden><label for="custom-two">Custom amount</label><div><span aria-hidden="true">$</span><input id="custom-two" name="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Whole dollars" /><button type="submit">Add</button><button class="clear-bet" type="button" data-player="two">Clear</button></div><p class="bet-error" id="bet-error-two" aria-live="polite"></p></form>
+            </div>
           </section>
         </div>
 
         <section class="controls" aria-label="Game controls">
           <div class="turn-indicator"><span class="turn-dot" id="turn-dot" aria-hidden="true"></span><span id="turn-text">Start a round to play</span></div>
           <div class="button-group">
-            <button class="button button-secondary" id="hit-button" type="button" disabled>Hit <span aria-hidden="true">＋</span></button>
-            <button class="button button-secondary" id="stand-button" type="button" disabled>Stand <span aria-hidden="true">↗</span></button>
+            <button class="button button-secondary" id="hit-button" type="button" aria-label="Hit. Player One presses A; Player Two presses semicolon." disabled>Hit <span aria-hidden="true">＋</span><span class="key-hints" aria-hidden="true"><kbd>A</kbd><kbd>;</kbd></span></button>
+            <button class="button button-secondary" id="stand-button" type="button" aria-label="Stand. Player One presses S; Player Two presses apostrophe." disabled>Stand <span aria-hidden="true">↗</span><span class="key-hints" aria-hidden="true"><kbd>S</kbd><kbd>'</kbd></span></button>
             <button class="button button-primary" id="start-button" type="button">Deal cards <span aria-hidden="true">→</span></button>
           </div>
+          <p class="keyboard-help">Keyboard controls: Player One <kbd>A</kbd> hit / <kbd>S</kbd> stand · Player Two <kbd>;</kbd> hit / <kbd>'</kbd> stand</p>
         </section>
       </section>
       <p class="sr-only" id="announcer" aria-live="assertive"></p>
