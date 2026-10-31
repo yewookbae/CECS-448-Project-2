@@ -28,13 +28,6 @@
             <div class="cards" id="dealer-cards" aria-label="Dealer cards"></div>
           </section>
 
-          <div class="table-center" aria-live="polite" aria-atomic="true">
-            <span class="center-rule" aria-hidden="true"></span>
-            <p class="round-label" id="round-label">READY WHEN YOU ARE</p>
-            <p class="round-message" id="round-message">A little luck. A little strategy.</p>
-            <span class="center-rule" aria-hidden="true"></span>
-          </div>
-
           <section class="hand-area players-area" aria-label="Player hands">
             <article class="player-hand" id="player-one-area" aria-labelledby="player-one-title">
               <div class="hand-heading">
@@ -54,8 +47,8 @@
           </section>
           <section class="table-betting" aria-label="Player bets">
             <div class="bet-line">
-              <div class="bet-player"><strong>Player One</strong><span>Balance <b id="balance-one">$2,500</b></span></div>
-              <button class="current-bet" id="bet-trigger-one" type="button" aria-expanded="false" aria-controls="custom-one-form">Bet <strong id="wager-one">$0</strong><span aria-hidden="true">✎</span></button>
+              <div class="bet-player"><span>Balance <b id="balance-one">$2,500</b></span></div>
+              <div class="bet-actions">
               <div class="chip-row" aria-label="Player One chip values">
                 <button class="chip chip-white" type="button" data-player="one" data-value="1" aria-label="Add $1 to Player One's bet">$1</button>
                 <button class="chip chip-red" type="button" data-player="one" data-value="5" aria-label="Add $5 to Player One's bet">$5</button>
@@ -63,11 +56,12 @@
                 <button class="chip chip-black" type="button" data-player="one" data-value="100" aria-label="Add $100 to Player One's bet">$100</button>
                 <button class="chip chip-purple" type="button" data-player="one" data-value="500" aria-label="Add $500 to Player One's bet">$500</button>
               </div>
-              <form class="custom-bet" id="custom-one-form" data-player="one" hidden><label for="custom-one">Custom amount</label><div><span aria-hidden="true">$</span><input id="custom-one" name="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Whole dollars" /><button type="submit">Add</button><button class="clear-bet" type="button" data-player="one">Clear</button></div><p class="bet-error" id="bet-error-one" aria-live="polite"></p></form>
+              <div class="bet-total"><span>Bet</span><strong id="wager-one">$0</strong><button class="clear-bet" type="button" data-player="one">Clear</button></div>
+              </div>
             </div>
             <div class="bet-line">
-              <div class="bet-player"><strong>Player Two</strong><span>Balance <b id="balance-two">$2,500</b></span></div>
-              <button class="current-bet" id="bet-trigger-two" type="button" aria-expanded="false" aria-controls="custom-two-form">Bet <strong id="wager-two">$0</strong><span aria-hidden="true">✎</span></button>
+              <div class="bet-player"><span>Balance <b id="balance-two">$2,500</b></span></div>
+              <div class="bet-actions">
               <div class="chip-row" aria-label="Player Two chip values">
                 <button class="chip chip-white" type="button" data-player="two" data-value="1" aria-label="Add $1 to Player Two's bet">$1</button>
                 <button class="chip chip-red" type="button" data-player="two" data-value="5" aria-label="Add $5 to Player Two's bet">$5</button>
@@ -75,7 +69,8 @@
                 <button class="chip chip-black" type="button" data-player="two" data-value="100" aria-label="Add $100 to Player Two's bet">$100</button>
                 <button class="chip chip-purple" type="button" data-player="two" data-value="500" aria-label="Add $500 to Player Two's bet">$500</button>
               </div>
-              <form class="custom-bet" id="custom-two-form" data-player="two" hidden><label for="custom-two">Custom amount</label><div><span aria-hidden="true">$</span><input id="custom-two" name="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Whole dollars" /><button type="submit">Add</button><button class="clear-bet" type="button" data-player="two">Clear</button></div><p class="bet-error" id="bet-error-two" aria-live="polite"></p></form>
+              <div class="bet-total"><span>Bet</span><strong id="wager-two">$0</strong><button class="clear-bet" type="button" data-player="two">Clear</button></div>
+              </div>
             </div>
           </section>
         </div>

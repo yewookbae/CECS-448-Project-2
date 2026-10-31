@@ -28,8 +28,6 @@ const elements = {
   dealerArea: document.querySelector('.dealer-area'),
   dealerScore: document.querySelector('#dealer-score'),
   dealerCaption: document.querySelector('#dealer-caption'),
-  roundLabel: document.querySelector('#round-label'),
-  roundMessage: document.querySelector('#round-message'),
   turnText: document.querySelector('#turn-text'),
   turnDot: document.querySelector('#turn-dot'),
   roundCount: document.querySelector('#round-count'),
@@ -144,12 +142,6 @@ function updateView() {
     const player = players.find((entry) => entry.key === chip.dataset.player);
     chip.disabled = !roundOver || player.bet + Number(chip.dataset.value) > player.bankroll;
   });
-  document.querySelectorAll('.custom-bet input, .custom-bet button').forEach((control) => {
-    control.disabled = !roundOver;
-  });
-  document.querySelectorAll('.current-bet').forEach((button) => {
-    button.disabled = !roundOver;
-  });
   document.querySelectorAll('.clear-bet').forEach((button) => {
     const player = players.find((entry) => entry.key === button.dataset.player);
     button.disabled = !roundOver || player.bet === 0;
@@ -167,17 +159,11 @@ function updateView() {
 }
 
 function setMessage(label, message, announce = false) {
-  elements.roundLabel.textContent = label;
-  elements.roundMessage.textContent = message;
   if (announce) elements.announcer.textContent = `${label}. ${message}`;
 }
 
 function startRound() {
   if (!roundOver || players.some((player) => player.bet < 1 || player.bet > player.bankroll)) return;
-  document.querySelectorAll('.custom-bet').forEach((form) => {
-    form.hidden = true;
-    document.querySelector(`#bet-trigger-${form.dataset.player}`).setAttribute('aria-expanded', 'false');
-  });
   players.forEach((player) => {
     player.roundBet = player.bet;
     player.bankroll -= player.bet;
@@ -287,16 +273,6 @@ function finishRound() {
 elements.start.addEventListener('click', startRound);
 elements.hit.addEventListener('click', hit);
 elements.stand.addEventListener('click', stand);
-document.querySelectorAll('.current-bet').forEach((button) => {
-  button.addEventListener('click', () => {
-    if (!roundOver) return;
-    const form = document.querySelector(`#${button.getAttribute('aria-controls')}`);
-    const expanded = button.getAttribute('aria-expanded') === 'true';
-    form.hidden = expanded;
-    button.setAttribute('aria-expanded', String(!expanded));
-    if (!expanded) form.elements.amount.focus();
-  });
-});
 document.addEventListener('keydown', (event) => {
   if (event.repeat || event.target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
 
@@ -317,7 +293,6 @@ document.querySelectorAll('.clear-bet').forEach((button) => {
     const player = players.find((entry) => entry.key === button.dataset.player);
     if (!roundOver) return;
     player.bet = 0;
-    document.querySelector(`#bet-error-${player.key}`).textContent = '';
     updateView();
   });
 });
@@ -327,32 +302,6 @@ document.querySelectorAll('.chip').forEach((chip) => {
     const amount = Number(chip.dataset.value);
     if (!roundOver || player.bet + amount > player.bankroll) return;
     player.bet += amount;
-    document.querySelector(`#bet-error-${player.key}`).textContent = '';
-    updateView();
-  });
-});
-document.querySelectorAll('.custom-bet').forEach((form) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const player = players.find((entry) => entry.key === form.dataset.player);
-    const input = form.elements.amount;
-    const amount = Number(input.value);
-    const error = document.querySelector(`#bet-error-${player.key}`);
-    if (!Number.isInteger(amount) || amount < 1) {
-      error.textContent = 'Enter a whole dollar amount of at least $1.';
-      input.focus();
-      return;
-    }
-    if (player.bet + amount > player.bankroll) {
-      error.textContent = `That exceeds the available balance of ${money.format(player.bankroll - player.bet)}.`;
-      input.focus();
-      return;
-    }
-    player.bet += amount;
-    error.textContent = '';
-    input.value = '';
-    form.hidden = true;
-    document.querySelector(`#bet-trigger-${player.key}`).setAttribute('aria-expanded', 'false');
     updateView();
   });
 });
