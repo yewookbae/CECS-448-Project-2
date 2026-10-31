@@ -309,6 +309,43 @@ document.querySelectorAll('.chip').forEach((chip) => {
     updateView();
   });
 });
+document.querySelectorAll('.bet-total').forEach((betTotal) => {
+  const playerKey = betTotal.querySelector('.clear-bet').dataset.player;
+  const player = players.find((entry) => entry.key === playerKey);
+  const wager = betTotal.querySelector('strong');
+  const input = betTotal.querySelector('.bet-amount-input');
+
+  function closeEditor(save) {
+    if (input.hidden) return;
+    const amount = Number(input.value);
+    if (save && Number.isInteger(amount) && amount >= 1 && amount <= player.bankroll && roundOver) {
+      player.bet = amount;
+    }
+    input.hidden = true;
+    wager.hidden = false;
+    updateView();
+  }
+
+  wager.addEventListener('dblclick', () => {
+    if (!roundOver) return;
+    input.value = player.bet || '';
+    input.max = String(player.bankroll);
+    wager.hidden = true;
+    input.hidden = false;
+    input.focus();
+    input.select();
+  });
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      closeEditor(true);
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
+      closeEditor(false);
+    }
+  });
+  input.addEventListener('blur', () => closeEditor(true));
+});
 elements.rulesButton.addEventListener('click', () => {
   const expanded = elements.rulesButton.getAttribute('aria-expanded') === 'true';
   elements.rulesButton.setAttribute('aria-expanded', String(!expanded));

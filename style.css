@@ -78,8 +78,10 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; }
 .bet-player > span { color: #b6c8ba; font-size: 15px; }
 .bet-player b { color: #e7d8af; font-weight: 600; }
 .bet-actions { display: flex; align-items: center; justify-content: center; gap: 14px; width: 100%; }
-.bet-total { display: grid; justify-items: center; gap: 1px; min-width: 48px; padding: 4px 6px; border: 1px solid rgba(238, 230, 205, .25); border-radius: 5px; background: rgba(4, 27, 19, .3); color: #b6c8ba; font-size: 8px; }
+.bet-total { display: grid; justify-items: center; gap: 1px; width: 70px; min-width: 70px; padding: 4px 6px; border: 1px solid rgba(238, 230, 205, .25); border-radius: 5px; background: rgba(4, 27, 19, .3); color: #b6c8ba; font-size: 8px; }
 .bet-total strong { color: #f1d88f; font: 600 13px 'Playfair Display', Georgia, serif; }
+.bet-amount-input { width: 100%; min-width: 0; height: 16px; padding: 0 2px; border: 1px solid rgba(238, 230, 205, .45); border-radius: 3px; outline-color: var(--gold); background: rgba(0, 0, 0, .25); color: #f1d88f; font: 600 12px 'DM Sans', sans-serif; text-align: center; }
+.bet-amount-input[hidden] { display: none; }
 .clear-bet { padding: 2px 5px; border: 1px solid rgba(238, 230, 205, .18); border-radius: 4px; background: transparent; color: #c3cec4; cursor: pointer; font-size: 8px; }
 .clear-bet:hover:not(:disabled) { border-color: var(--gold); color: var(--ink); }
 .clear-bet:focus-visible { outline: 2px solid #f3d98c; outline-offset: 2px; }
