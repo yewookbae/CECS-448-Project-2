@@ -48,11 +48,11 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; }
 .score-number { font: 600 24px/1 'Playfair Display', Georgia, serif; color: #fff9e9; }
 .score-label { margin-top: 5px; color: #c6d4c8; font-size: 8px; }
 .cards { min-height: 95px; display: flex; align-items: center; justify-content: center; padding: 10px 0 4px; }
-.card { position: relative; width: 65px; height: 91px; flex: 0 0 auto; margin-left: -12px; padding: 8px 7px; border: 1px solid #e6e1d4; border-radius: 7px; background: #f8f5ed; color: #19251f; box-shadow: 0 5px 10px rgba(0,0,0,.25); animation: deal-in .22s ease-out both; }
+.card { position: relative; width: 80px; height: 112px; flex: 0 0 auto; margin-left: -12px; padding: 8px 7px; border: 1px solid #e6e1d4; border-radius: 7px; background: #f8f5ed; color: #19251f; box-shadow: 0 5px 10px rgba(0,0,0,.25); animation: deal-in .22s ease-out both; }
 .card:first-child { margin-left: 0; }
 .card.red { color: #ae3d3c; }
-.card-rank { display: block; font: 700 14px/1 'DM Sans', sans-serif; }
-.card-suit { display: block; margin-top: 5px; text-align: center; font-size: 29px; line-height: 1; }
+.card-rank { display: block; font: 700 14px/1 'DM Sans', sans-serif; }  /* adjust font size here */
+.card-suit { display: block; margin-top: 5px; text-align: center; font-size: 29px; line-height: 1; } /* adjust suit size here */
 .card-corner { position: absolute; right: 6px; bottom: 5px; transform: rotate(180deg); font-size: 12px; font-weight: 700; }
 .card-back { display: grid; place-items: center; border: 1px solid #ece2ca; background: repeating-linear-gradient(45deg, #243e38, #243e38 4px, #2e5047 4px, #2e5047 7px); color: #e8d6a9; }
 .card-back span { display: grid; width: 36px; height: 55px; place-items: center; border: 1px solid rgba(239, 224, 187, .6); font: 600 21px 'Playfair Display', serif; }
@@ -74,8 +74,8 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; }
 .table-betting { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(34px, 7vw, 100px); width: 100%; max-width: 1120px; margin: 10px auto 0; padding: 0; }
 .bet-line { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 10px; padding: 18px 24px 0; border-top: 1px solid rgba(239, 235, 216, .23); }
 .bet-player { display: flex; align-items: center; justify-content: center; width: 100%; }
-.bet-player > strong { color: #f2efe4; font-size: 11px; font-weight: 600; }
-.bet-player > span { color: #b6c8ba; font-size: 11px; }
+.bet-player > strong { color: #f2efe4; font-size: 15px; font-weight: 600; }
+.bet-player > span { color: #b6c8ba; font-size: 15px; }
 .bet-player b { color: #e7d8af; font-weight: 600; }
 .bet-actions { display: flex; align-items: center; justify-content: center; gap: 14px; width: 100%; }
 .bet-total { display: grid; justify-items: center; gap: 1px; min-width: 48px; padding: 4px 6px; border: 1px solid rgba(238, 230, 205, .25); border-radius: 5px; background: rgba(4, 27, 19, .3); color: #b6c8ba; font-size: 8px; }
@@ -85,7 +85,7 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; }
 .clear-bet:focus-visible { outline: 2px solid #f3d98c; outline-offset: 2px; }
 .clear-bet:disabled { opacity: .35; cursor: not-allowed; }
 .chip-row { display: flex; flex-wrap: wrap; gap: 5px; }
-.chip { width: 36px; height: 36px; flex: 0 0 auto; padding: 0; border: 3px dashed rgba(255, 255, 255, .76); border-radius: 50%; color: white; box-shadow: 0 2px 4px rgba(0,0,0,.32); cursor: pointer; font-size: 9px; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,.35); transition: transform .12s, filter .12s; }
+.chip { width: 44px; height: 44px; flex: 0 0 auto; padding: 0; border: 3px dashed rgba(255, 255, 255, .76); border-radius: 50%; color: white; box-shadow: 0 2px 4px rgba(0,0,0,.32); cursor: pointer; font-size: 9px; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,.35); transition: transform .12s, filter .12s; }
 .chip:hover:not(:disabled) { transform: translateY(-3px); filter: brightness(1.12); }
 .chip:focus-visible, .clear-bet:focus-visible { outline: 2px solid #f3d98c; outline-offset: 2px; }
 .chip:disabled { opacity: .38; cursor: not-allowed; }

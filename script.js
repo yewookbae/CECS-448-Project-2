@@ -241,23 +241,19 @@ function finishRound() {
     const total = handValue(player.cards);
     if (player.busted) {
       player.result = 'lose';
-      player.bet = 0;
       return `${player.name} loses (bust)`;
     }
     if (dealerTotal > 21 || total > dealerTotal) {
       player.result = 'win';
       player.bankroll += player.roundBet * 2;
-      player.bet = 0;
       return `${player.name} wins`;
     }
     if (total === dealerTotal) {
       player.result = 'push';
       player.bankroll += player.roundBet;
-      player.bet = 0;
       return `${player.name} pushes`;
     }
     player.result = 'lose';
-    player.bet = 0;
     return `${player.name} loses`;
   });
   const hasPlayerWin = players.some((player) => player.result === 'win');
@@ -275,6 +271,14 @@ elements.hit.addEventListener('click', hit);
 elements.stand.addEventListener('click', stand);
 document.addEventListener('keydown', (event) => {
   if (event.repeat || event.target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
+
+  if (event.code === 'Space') {
+    if (roundOver && !elements.start.disabled) {
+      event.preventDefault();
+      elements.start.click();
+    }
+    return;
+  }
 
   const shortcuts = {
     a: { player: 0, action: hit },
