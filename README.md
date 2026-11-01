@@ -12,3 +12,13 @@ Open `index.html` in a browser. In VS Code, right-click the file and choose **Op
 - Each player's wager stays selected after a round and carries into the next round. Use **Clear** to reset it or add chips to change it.
 - Keyboard controls: Player One uses **A** to hit and **S** to stand; Player Two uses **;** to hit and **'** to stand. Press **Space** to deal or play again when the main button is enabled.
 - The table and controls use a narrower layout on small screens.
+
+
+## To do
+- Hit stand under each player <
+- Make more clear on how to initially start the game (like place bets to start)>
+    - Default bet>
+- Put "clear bet" button outside of box>
+- make push more obvious, dont grey out feels like player lost >
+- Dealer only wins only if they win against both players>
+

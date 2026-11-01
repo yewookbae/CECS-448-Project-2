@@ -6,8 +6,8 @@ const suits = [
 ];
 const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 const players = [
-  { name: 'Player One', key: 'one', cards: [], stood: false, busted: false, result: null, bankroll: 2500, bet: 0, roundBet: 0 },
-  { name: 'Player Two', key: 'two', cards: [], stood: false, busted: false, result: null, bankroll: 2500, bet: 0, roundBet: 0 },
+  { name: 'Player One', key: 'one', cards: [], stood: false, busted: false, result: null, bankroll: 2500, bet: 25, roundBet: 0 },
+  { name: 'Player Two', key: 'two', cards: [], stood: false, busted: false, result: null, bankroll: 2500, bet: 25, roundBet: 0 },
 ];
 
 let deck = [];
@@ -20,8 +20,8 @@ let dealerResult = null;
 
 const elements = {
   start: document.querySelector('#start-button'),
-  hit: document.querySelector('#hit-button'),
-  stand: document.querySelector('#stand-button'),
+  hit: [...document.querySelectorAll('[data-action="hit"]')],
+  stand: [...document.querySelectorAll('[data-action="stand"]')],
   rulesButton: document.querySelector('#rules-button'),
   rulesPanel: document.querySelector('#rules-panel'),
   dealerCards: document.querySelector('#dealer-cards'),
@@ -110,6 +110,7 @@ function updateView() {
     : dealerResult === 'win' ? 'HOUSE WINS'
       : dealerResult === 'lose' ? 'HOUSE LOSES'
         : dealerResult === 'mixed' ? 'HOUSE WINS 1 · LOSES 1'
+        : dealerResult === 'split' ? 'HOUSE WINS 1 · PUSHES 1'
         : dealerResult === 'push' ? 'PUSH · BETS RETURNED' : 'House hand';
 
   players.forEach((player, index) => {
@@ -136,8 +137,8 @@ function updateView() {
     else captionElement.textContent = index === activePlayer ? 'Your turn' : 'Waiting';
   });
 
-  elements.hit.disabled = roundOver;
-  elements.stand.disabled = roundOver;
+  elements.hit.forEach((button) => { button.disabled = roundOver; });
+  elements.stand.forEach((button) => { button.disabled = roundOver; });
   document.querySelectorAll('.chip').forEach((chip) => {
     const player = players.find((entry) => entry.key === chip.dataset.player);
     chip.disabled = !roundOver || player.bet + Number(chip.dataset.value) > player.bankroll;
@@ -258,7 +259,9 @@ function finishRound() {
   });
   const hasPlayerWin = players.some((player) => player.result === 'win');
   const hasPlayerLoss = players.some((player) => player.result === 'lose');
-  dealerResult = hasPlayerWin && !hasPlayerLoss ? 'lose' : hasPlayerLoss && !hasPlayerWin ? 'win' : hasPlayerWin && hasPlayerLoss ? 'mixed' : 'push';
+  const bothPlayersLose = players.every((player) => player.result === 'lose');
+  const onePlayerPushes = players.some((player) => player.result === 'push');
+  dealerResult = bothPlayersLose ? 'win' : hasPlayerWin && !hasPlayerLoss ? 'lose' : hasPlayerWin && hasPlayerLoss ? 'mixed' : onePlayerPushes && hasPlayerLoss ? 'split' : 'push';
   const winners = players.filter((player) => player.result === 'win');
   const headline = winners.length === 2 ? 'Both players win!' : winners.length === 1 ? `${winners[0].name} wins!` : hasPlayerLoss ? 'House wins!' : 'Push · bets returned';
   const details = `${summaries.join(' · ')}. Dealer: ${dealerTotal}${dealerTotal > 21 ? ' (bust)' : ''}.`;
@@ -267,8 +270,8 @@ function finishRound() {
 }
 
 elements.start.addEventListener('click', startRound);
-elements.hit.addEventListener('click', hit);
-elements.stand.addEventListener('click', stand);
+elements.hit.forEach((button) => button.addEventListener('click', hit));
+elements.stand.forEach((button) => button.addEventListener('click', stand));
 document.addEventListener('keydown', (event) => {
   if (event.repeat || event.target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
 
@@ -310,7 +313,7 @@ document.querySelectorAll('.chip').forEach((chip) => {
   });
 });
 document.querySelectorAll('.bet-total').forEach((betTotal) => {
-  const playerKey = betTotal.querySelector('.clear-bet').dataset.player;
+  const playerKey = betTotal.closest('.bet-line').querySelector('.clear-bet').dataset.player;
   const player = players.find((entry) => entry.key === playerKey);
   const wager = betTotal.querySelector('strong');
   const input = betTotal.querySelector('.bet-amount-input');
