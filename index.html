@@ -90,6 +90,20 @@
       </section>
       <p class="sr-only" id="announcer" aria-live="assertive"></p>
     </main>
+    <section class="welcome-screen" id="welcome-screen" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+      <div class="welcome-card">
+        <p class="welcome-eyebrow">A TWO PLAYER CARD GAME</p>
+        <h2 id="welcome-title">Two Player Poker</h2>
+        <p class="welcome-intro">Take turns building your hand. Get closer to 21 than the dealer without going over.</p>
+        <div class="welcome-keys">
+          <div><span>Player One</span><p><kbd>A</kbd> Hit <kbd>S</kbd> Stand</p></div>
+          <div><span>Player Two</span><p><kbd>;</kbd> Hit <kbd>'</kbd> Stand</p></div>
+        </div>
+        <p class="welcome-betting">Click chips to add to your bet. Double-click the bet amount to enter a custom amount.</p>
+        <button class="button button-primary welcome-start" id="welcome-start" type="button">Deal cards <span aria-hidden="true">→</span></button>
+        <p class="welcome-space">or press <kbd>Space</kbd> to play</p>
+      </div>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>

@@ -20,6 +20,7 @@ let dealerResult = null;
 
 const elements = {
   start: document.querySelector('#start-button'),
+  welcome: document.querySelector('#welcome-screen'),
   hit: [...document.querySelectorAll('[data-action="hit"]')],
   stand: [...document.querySelectorAll('[data-action="stand"]')],
   rulesButton: document.querySelector('#rules-button'),
@@ -165,6 +166,7 @@ function setMessage(label, message, announce = false) {
 
 function startRound() {
   if (!roundOver || players.some((player) => player.bet < 1 || player.bet > player.bankroll)) return;
+  elements.welcome.hidden = true;
   players.forEach((player) => {
     player.roundBet = player.bet;
     player.bankroll -= player.bet;
@@ -270,6 +272,7 @@ function finishRound() {
 }
 
 elements.start.addEventListener('click', startRound);
+document.querySelector('#welcome-start').addEventListener('click', startRound);
 elements.hit.forEach((button) => button.addEventListener('click', hit));
 elements.stand.forEach((button) => button.addEventListener('click', stand));
 document.addEventListener('keydown', (event) => {

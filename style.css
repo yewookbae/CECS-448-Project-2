@@ -37,6 +37,20 @@ h1 span { color: #b8c4ba; }
 .text-button span { margin-left: 5px; }
 .rules-panel { margin: -8px 0 18px; padding: 15px 18px; border: 1px solid var(--line); border-radius: 10px; background: rgba(6, 20, 16, .72); font-size: 13px; line-height: 1.6; }
 .rules-panel p { margin: 4px 0 0; color: #c0cbc2; }
+.welcome-screen { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 24px; background: rgba(5, 17, 14, .76); backdrop-filter: blur(8px); }
+.welcome-screen[hidden] { display: none; }
+.welcome-card { width: min(100%, 480px); padding: clamp(26px, 5vw, 42px); border: 1px solid rgba(227, 201, 138, .42); border-radius: 18px; background: linear-gradient(145deg, #1b4e40, #102d25); box-shadow: 0 24px 80px rgba(0, 0, 0, .4); text-align: center; }
+.welcome-eyebrow { margin: 0 0 10px; color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: .18em; }
+.welcome-card h2 { color: var(--ink); font: 600 clamp(28px, 7vw, 38px)/1.15 'Playfair Display', Georgia, serif; }
+.welcome-intro { max-width: 350px; margin: 12px auto 24px; color: #c5d2c8; font-size: 14px; line-height: 1.6; }
+.welcome-keys { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: left; }
+.welcome-keys > div { padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: rgba(4, 21, 16, .24); }
+.welcome-keys span { color: var(--gold); font-size: 12px; font-weight: 700; }
+.welcome-keys p { margin: 9px 0 0; color: #d4ded5; font-size: 13px; white-space: nowrap; }
+.welcome-screen kbd { display: inline-block; min-width: 24px; padding: 3px 6px; border: 1px solid rgba(238, 230, 205, .3); border-radius: 5px; color: var(--ink); background: rgba(0, 0, 0, .18); font: 600 11px 'DM Sans', sans-serif; text-align: center; }
+.welcome-betting { margin: 20px 0; color: #c5d2c8; font-size: 13px; line-height: 1.6; }
+.welcome-start { min-width: 180px; }
+.welcome-space { margin: 12px 0 0; color: #aeb9ae; font-size: 12px; }
 .table { position: relative; overflow: hidden; min-height: 570px; padding: 36px clamp(38px, 6vw, 88px) 32px; border: 1px solid rgba(234, 219, 177, .37); border-radius: 280px 280px 36px 36px / 100px 100px 36px 36px; background: radial-gradient(ellipse at 50% 44%, #22624e 0%, var(--felt) 48%, var(--felt-deep) 100%); box-shadow: inset 0 0 0 8px rgba(5, 21, 16, .14), inset 0 0 46px rgba(4, 24, 17, .35), 0 24px 65px rgba(0, 0, 0, .22); }
 .hand-area { position: relative; z-index: 1; }
 .dealer-area { max-width: 620px; min-height: 150px; margin: 0 auto; }
