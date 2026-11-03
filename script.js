@@ -84,7 +84,6 @@ function renderCard(card, hidden = false) {
     article.className = 'card card-back';
     article.setAttribute('aria-label', 'Face-down card');
     article.setAttribute('role', 'img');
-    article.innerHTML = '<span aria-hidden="true">21</span>';
     return article;
   }
   article.className = `card${card.color === 'red' ? ' red' : ''}`;
